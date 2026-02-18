@@ -16,6 +16,10 @@ A fast-paced 2D space shooter game built with HTML5 Canvas and vanilla JavaScrip
 ### Game Over Screen
 ![Game Over Screen](./images/gameover.png)
 
+### Inventory Screen
+![Game Over Screen](./images/inventory.png)
+
+
 ---
 
 ## 🎮 Game Features
@@ -191,23 +195,6 @@ This game demonstrates:
 - [ ] Keyboard rebinding
 - [ ] Difficulty presets
 
-## 🎬 Screenshots
-
-### Main Menu
-![Menu Screen](https://user-images.githubusercontent.com/placeholder/menu.png)
-
-### Gameplay
-![Gameplay Screen](https://user-images.githubusercontent.com/placeholder/gameplay.png)
-
-### Game Over
-![Game Over Screen](https://user-images.githubusercontent.com/placeholder/gameover.png)
-
-### Shop
-![Shop Screen](https://user-images.githubusercontent.com/placeholder/shop.png)
-
-## 📄 License
-
-This project is open source and available for educational and personal use.
 
 ## 🤝 Contributing
 
@@ -219,9 +206,6 @@ Created as an educational HTML5 game project demonstrating web game development 
 
 ---
 
-**Give the game a try and see how high you can score! 🚀**
-
-Made with ❤️ and Canvas
 
 *Note: Game UI is in French. Core gameplay mechanics are universal!*
 
@@ -239,7 +223,6 @@ This project is open source for educational and personal use.
 **For Personal Use:**
 - ✅ Play and enjoy the game
 - ✅ Learn from the source code
-- ✅ Modify for personal projects
 - ✅ Share the GitHub repository link
 
 **For Commercial Use or Redistribution:**
@@ -248,7 +231,7 @@ This project is open source for educational and personal use.
 - ❌ Do not claim ownership of the code
 
 **To Request Usage Permissions:**
-Please contact: **[Your Contact Here]**
+Please contact
 
 For inquiries about commercial licensing, collaboration, or other usage requests, please reach out before using this project in ways beyond personal education.
 
