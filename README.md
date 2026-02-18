@@ -2,7 +2,21 @@
 
 A fast-paced 2D space shooter game built with HTML5 Canvas and vanilla JavaScript. Defend Earth against an alien invasion with progressive difficulty, power-ups, and a comprehensive upgrade system!
 
-![Game Screenshots](https://user-images.githubusercontent.com/placeholder/space-defender-banner.png)
+## 📸 Game Screenshots
+
+### Main Menu
+![Menu Screen](./images/menu.png)
+
+### Active Gameplay
+![Gameplay Screen](./images/gameplay.png)
+
+### Shop Interface
+![Shop Screen](./images/shop.png)
+
+### Game Over Screen
+![Game Over Screen](./images/gameover.png)
+
+---
 
 ## 🎮 Game Features
 
@@ -210,3 +224,37 @@ Created as an educational HTML5 game project demonstrating web game development 
 Made with ❤️ and Canvas
 
 *Note: Game UI is in French. Core gameplay mechanics are universal!*
+
+---
+
+## 📄 License & Copyright
+
+### Copyright Notice
+**© 2026 Space Defender - All Rights Reserved**
+
+This project is open source for educational and personal use.
+
+### Usage Rights & Permissions
+
+**For Personal Use:**
+- ✅ Play and enjoy the game
+- ✅ Learn from the source code
+- ✅ Modify for personal projects
+- ✅ Share the GitHub repository link
+
+**For Commercial Use or Redistribution:**
+- ❌ Do not use commercially without permission
+- ❌ Do not repackage or rebrand
+- ❌ Do not claim ownership of the code
+
+**To Request Usage Permissions:**
+Please contact: **[Your Contact Here]**
+
+For inquiries about commercial licensing, collaboration, or other usage requests, please reach out before using this project in ways beyond personal education.
+
+### License Type
+This project is released under a **Custom Educational License** with restrictions on commercial use.
+
+---
+
+**Enjoy Space Defender! 🎮**
