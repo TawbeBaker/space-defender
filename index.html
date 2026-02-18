@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Defender - HTML5 Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="lives">Lives: <span id="lives">❤️❤️❤️</span></div>
+            <div class="level">Level: <span id="level">1</span></div>
+            <div class="coins">💰 Coins: <span id="coins">0</span></div>
+        </div>
+        <div class="progress-section">
+            <div class="progress-label">
+                <span>Progression Niveau <span id="nextLevel">2</span></span>
+                <span><span id="currentProgress">0</span> / <span id="progressGoal">500</span></span>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="powerups-display">
+            <div id="activeShield" class="powerup-indicator hidden">
+                🛡️ Bouclier: <span id="shieldTime">0</span>s
+            </div>
+            <div id="activeRapidFire" class="powerup-indicator hidden">
+                ⚡ Tir Rapide: <span id="rapidFireTime">0</span>s
+            </div>
+            <div id="activeMultiShot" class="powerup-indicator hidden">
+                🔱 Multi-Tir: <span id="multiShotTime">0</span>s
+            </div>
+        </div>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="startScreen" class="overlay">
+            <h1>🚀 Space Defender</h1>
+            <p>Défendez la Terre contre l'invasion alien!</p>
+            <div class="coins-display-large">
+                💰 Coins: <span id="menuCoins">0</span>
+            </div>
+            <div class="menu-buttons">
+                <button id="startBtn" class="game-btn">Jouer</button>
+                <button id="shopBtn" class="game-btn secondary">🛒 Boutique</button>
+                <button id="inventoryBtn" class="game-btn secondary">🎒 Inventaire</button>
+            </div>
+            <div class="controls-info">
+                <p><strong>Contrôles:</strong></p>
+                <p>⬅️ ➡️ Flèches ou A/D - Déplacer</p>
+                <p>SPACE - Tirer | P - Pause</p>
+            </div>
+        </div>
+        <div id="gameOverScreen" class="overlay hidden">
+            <h1>💥 Game Over</h1>
+            <p>Score Final: <span id="finalScore">0</span></p>
+            <p>Niveau Atteint: <span id="finalLevel">1</span></p>
+            <p>Ennemis Vaincus: <span id="finalKills">0</span></p>
+            <p>Power-ups Collectés: <span id="finalPowerups">0</span></p>
+            <div class="coins-earned">
+                <p>💰 Coins Gagnés: <span id="coinsEarned">0</span></p>
+                <p>💰 Total Coins: <span id="totalCoinsEnd">0</span></p>
+            </div>
+            <button id="restartBtn" class="game-btn">Rejouer</button>
+            <button id="menuBtn" class="game-btn secondary">Menu Principal</button>
+        </div>
+        <div id="bossScreen" class="boss-warning hidden">
+            <h1>⚠️ BOSS NIVEAU <span id="bossLevel">5</span> ⚠️</h1>
+            <p>Préparez-vous au combat!</p>
+        </div>
+        <div id="pauseScreen" class="overlay hidden">
+            <h1>⏸️ Paused</h1>
+            <p>Press P to continue</p>
+        </div>
+        
+        <!-- Shop Screen -->
+        <div id="shopScreen" class="overlay shop-overlay hidden">
+            <h1>🛒 Boutique</h1>
+            <div class="shop-balance">💰 Vos Coins: <span id="shopCoins">0</span></div>
+            
+            <div class="shop-tabs">
+                <button class="tab-btn active" data-tab="skins">🎨 Skins</button>
+                <button class="tab-btn" data-tab="powerups">⚡ Power-ups</button>
+                <button class="tab-btn" data-tab="upgrades">⬆️ Améliorations</button>
+                <button class="tab-btn" data-tab="music">🎵 Musique</button>
+                <button class="tab-btn" data-tab="settings">⚙️ Paramètres</button>
+            </div>
+            
+            <div class="shop-content" id="skinsTab">
+                <h2>Skins de Vaisseau</h2>
+                <div class="shop-grid" id="skinsGrid"></div>
+            </div>
+            
+            <div class="shop-content hidden" id="powerupsTab">
+                <h2>Power-ups Instantanés</h2>
+                <div class="shop-grid" id="powerupsGrid"></div>
+            </div>
+            
+            <div class="shop-content hidden" id="upgradesTab">
+                <h2>Améliorations Permanentes</h2>
+                <div class="shop-grid" id="upgradesGrid"></div>
+            </div>
+            
+            <div class="shop-content hidden" id="musicTab">
+                <h2>Musiques d'Ambiance</h2>
+                <div class="shop-grid" id="musicGrid"></div>
+            </div>
+            
+            <div class="shop-content hidden" id="settingsTab">
+                <h2>⚙️ Paramètres de Jeu</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <label>🎮 Sensibilité des Contrôles</label>
+                        <div class="sensitivity-control">
+                            <input type="range" id="sensitivitySlider" min="0.5" max="2.0" step="0.1" value="1.0">
+                            <span id="sensitivityValue">100%</span>
+                        </div>
+                        <small>Lent (50%) ← → Rapide (200%)</small>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label>🖥️ Mode Plein Écran</label>
+                        <button id="fullscreenBtn" class="game-btn secondary">Activer</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="music-controls">
+                <button id="musicToggle" class="game-btn secondary">🔊 Musique</button>
+            </div>
+            
+            <button id="closeShopBtn" class="game-btn secondary">Retour</button>
+        </div>
+        
+        <!-- Inventory Screen -->
+        <div id="inventoryScreen" class="overlay shop-overlay hidden">
+            <h1>🎒 Inventaire</h1>
+            <div class="shop-balance">💰 Vos Coins: <span id="inventoryCoins">0</span></div>
+            
+            <div class="inventory-section">
+                <h2>🎨 Skins Possédés</h2>
+                <div class="shop-grid" id="ownedSkinsGrid"></div>
+            </div>
+            
+            <div class="inventory-section">
+                <h2>⚡ Power-ups Disponibles</h2>
+                <div class="inventory-powerups" id="inventoryPowerups"></div>
+            </div>
+            
+            <div class="inventory-section">
+                <h2>📊 Statistiques</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Parties Jouées</div>
+                        <div class="stat-value" id="gamesPlayed">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Score Maximum</div>
+                        <div class="stat-value" id="highScore">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Niveau Maximum</div>
+                        <div class="stat-value" id="maxLevel">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Total Ennemis</div>
+                        <div class="stat-value" id="totalKills">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Boss Vaincus</div>
+                        <div class="stat-value" id="bossesKilled">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Coins Gagnés</div>
+                        <div class="stat-value" id="totalCoinsEarned">0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="closeInventoryBtn" class="game-btn secondary">Retour</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
